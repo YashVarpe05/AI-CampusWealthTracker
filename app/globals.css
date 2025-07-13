@@ -66,3 +66,25 @@ body {
 .hero-image.scrolled {
   transform: rotateX(0deg) scale(1) translateY(40px);
 }
+
+/* Add to your global CSS or component styles */
+.custom-checkbox[data-state="checked"] {
+  background-color: black !important;
+  border-color: black !important;
+  color: white !important;
+}
+
+.custom-checkbox[data-state="checked"] svg {
+  color: white !important;
+}
+
+/* Add to your globals.css or wherever your CSS variables are defined */
+:root {
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+}
+
+.dark {
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+}
