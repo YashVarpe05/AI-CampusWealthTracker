@@ -49,7 +49,7 @@ import {
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
-import { categoryColors } from "@/data/categories";
+import { categoryColors, getCategoryColor } from "@/data/categories";
 import { bulkDeleteTransactions } from "@/actions/accounts"; // Fixed: changed from account to accounts
 import useFetch from "@/hooks/use-fetch";
 import { BarLoader } from "react-spinners";
@@ -367,11 +367,11 @@ export default function TransactionTable({ transactions = [] }) {
 									<TableCell className="capitalize">
 										<span
 											style={{
-												background: categoryColors[transaction.category],
+												background: getCategoryColor(transaction.category),
 											}}
-											className="px-2 py-1 rounded text-white text-sm"
+											className="px-2 py-1 rounded text-white text-sm font-medium"
 										>
-											{transaction.category}
+											{transaction.category.replace(/-/g, " ")}
 										</span>
 									</TableCell>
 									<TableCell
@@ -382,7 +382,7 @@ export default function TransactionTable({ transactions = [] }) {
 												: "text-green-500"
 										)}
 									>
-										{transaction.type === "EXPENSE" ? "-" : "+"}$
+										{transaction.type === "EXPENSE" ? "-" : "+"}₹
 										{transaction.amount.toFixed(2)}
 									</TableCell>
 									<TableCell>

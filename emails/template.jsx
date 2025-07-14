@@ -12,35 +12,35 @@ import {
 // Dummy data for preview
 const PREVIEW_DATA = {
 	monthlyReport: {
-		userName: "John Doe",
+		userName: "Priya Sharma",
 		type: "monthly-report",
 		data: {
 			month: "December",
 			stats: {
-				totalIncome: 5000,
-				totalExpenses: 3500,
+				totalIncome: 15000,
+				totalExpenses: 12500,
 				byCategory: {
-					housing: 1500,
-					groceries: 600,
-					transportation: 400,
-					entertainment: 300,
-					utilities: 700,
+					"mess-food": 4500,
+					"study-materials": 2800,
+					"hostel-fees": 3000,
+					transport: 1200,
+					entertainment: 1000,
 				},
 			},
 			insights: [
-				"Your housing expenses are 43% of your total spending - consider reviewing your housing costs.",
-				"Great job keeping entertainment expenses under control this month!",
-				"Setting up automatic savings could help you save 20% more of your income.",
+				"Your mess and food expenses are 36% of your total spending - try cooking occasionally to save money.",
+				"Great job managing your entertainment expenses this month! Perfect balance for student life.",
+				"Consider buying second-hand textbooks next semester to reduce study material costs.",
 			],
 		},
 	},
 	budgetAlert: {
-		userName: "John Doe",
+		userName: "Priya Sharma",
 		type: "budget-alert",
 		data: {
 			percentageUsed: 85,
-			budgetAmount: 4000,
-			totalExpenses: 3400,
+			budgetAmount: 15000,
+			totalExpenses: 12750,
 		},
 	},
 };
@@ -68,16 +68,16 @@ export default function EmailTemplate({
 						<Section style={styles.statsContainer}>
 							<div style={styles.stat}>
 								<Text style={styles.text}>Total Income</Text>
-								<Text style={styles.heading}>${data?.stats.totalIncome}</Text>
+								<Text style={styles.heading}>₹{data?.stats.totalIncome}</Text>
 							</div>
 							<div style={styles.stat}>
 								<Text style={styles.text}>Total Expenses</Text>
-								<Text style={styles.heading}>${data?.stats.totalExpenses}</Text>
+								<Text style={styles.heading}>₹{data?.stats.totalExpenses}</Text>
 							</div>
 							<div style={styles.stat}>
-								<Text style={styles.text}>Net</Text>
+								<Text style={styles.text}>Net Savings</Text>
 								<Text style={styles.heading}>
-									${data?.stats.totalIncome - data?.stats.totalExpenses}
+									₹{data?.stats.totalIncome - data?.stats.totalExpenses}
 								</Text>
 							</div>
 						</Section>
@@ -85,12 +85,16 @@ export default function EmailTemplate({
 						{/* Category Breakdown */}
 						{data?.stats?.byCategory && (
 							<Section style={styles.section}>
-								<Heading style={styles.heading}>Expenses by Category</Heading>
+								<Heading style={styles.heading}>
+									Campus Expenses by Category
+								</Heading>
 								{Object.entries(data?.stats.byCategory).map(
 									([category, amount]) => (
 										<div key={category} style={styles.row}>
-											<Text style={styles.text}>{category}</Text>
-											<Text style={styles.text}>${amount}</Text>
+											<Text style={styles.text}>
+												{category.replace("-", " ")}
+											</Text>
+											<Text style={styles.text}>₹{amount}</Text>
 										</div>
 									)
 								)}
@@ -100,7 +104,7 @@ export default function EmailTemplate({
 						{/* AI Insights */}
 						{data?.insights && (
 							<Section style={styles.section}>
-								<Heading style={styles.heading}>Welth Insights</Heading>
+								<Heading style={styles.heading}>Campus Wealth Insights</Heading>
 								{data.insights.map((insight, index) => (
 									<Text key={index} style={styles.text}>
 										• {insight}
@@ -110,8 +114,8 @@ export default function EmailTemplate({
 						)}
 
 						<Text style={styles.footer}>
-							Thank you for using Welth. Keep tracking your finances for better
-							financial health!
+							Thank you for using Campus Wealth Tracker. Keep managing your
+							student budget for a financially smart campus life!
 						</Text>
 					</Container>
 				</Body>
@@ -126,25 +130,25 @@ export default function EmailTemplate({
 				<Preview>Budget Alert</Preview>
 				<Body style={styles.body}>
 					<Container style={styles.container}>
-						<Heading style={styles.title}>Budget Alert</Heading>
+						<Heading style={styles.title}>Campus Budget Alert</Heading>
 						<Text style={styles.text}>Hello {userName},</Text>
 						<Text style={styles.text}>
 							You&rsquo;ve used {data?.percentageUsed.toFixed(1)}% of your
-							monthly budget.
+							monthly campus budget. Time to review your spending!
 						</Text>
 						<Section style={styles.statsContainer}>
 							<div style={styles.stat}>
 								<Text style={styles.text}>Budget Amount</Text>
-								<Text style={styles.heading}>${data?.budgetAmount}</Text>
+								<Text style={styles.heading}>₹{data?.budgetAmount}</Text>
 							</div>
 							<div style={styles.stat}>
 								<Text style={styles.text}>Spent So Far</Text>
-								<Text style={styles.heading}>${data?.totalExpenses}</Text>
+								<Text style={styles.heading}>₹{data?.totalExpenses}</Text>
 							</div>
 							<div style={styles.stat}>
 								<Text style={styles.text}>Remaining</Text>
 								<Text style={styles.heading}>
-									${data?.budgetAmount - data?.totalExpenses}
+									₹{data?.budgetAmount - data?.totalExpenses}
 								</Text>
 							</div>
 						</Section>

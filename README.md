@@ -1,33 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Campus Wealth Tracker
 
-## Getting Started
+A smart financial management application designed specifically for Indian campus students. Track your pocket money, mess fees, study expenses, and build healthy financial habits during your college years.
+
+## 🎯 Features
+
+- **Student-Focused Categories**: Mess fees, study materials, hostel expenses, transport, and entertainment
+- **Indian Currency Support**: All amounts displayed in ₹ (INR)
+- **Budget Management**: Set monthly budgets for different expense categories
+- **AI-Powered Insights**: Get personalized financial advice for student life
+- **Receipt Scanning**: Automatically extract data from bills and receipts
+- **Campus Expense Analytics**: Understand your spending patterns with detailed charts
+- **Monthly Reports**: Automated financial summaries delivered to your email
+
+## 🚀 Getting Started
 
 First, run the development server:
 
 ```bash
 npm run dev
+npx inngest-cli@latest dev
 # or
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## 🎓 Perfect for Campus Students
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This application understands the unique financial challenges of campus life:
 
-## Learn More
+- Managing limited pocket money
+- Tracking mess and hostel fees
+- Budgeting for textbooks and study materials
+- Saving for home visits and special occasions
+- Building emergency funds for unexpected expenses
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Built With
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Next.js 14** - React framework with App Router
+- **Clerk** - Authentication and user management
+- **Prisma** - Database ORM
+- **Supabase** - PostgreSQL database
+- **Tailwind CSS** - Styling
+- **Shadcn/ui** - UI components
+- **Google Gemini AI** - Financial insights generation
+- **Inngest** - Background job processing
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📱 Mobile Responsive
+
+Fully responsive design optimized for mobile devices - perfect for students on the go!
+
+## 📧 Email Configuration & Testing
+
+### Setting up Email Functionality
+
+1. **Get a Resend API Key**:
+   - Sign up at [resend.com](https://resend.com)
+   - Get your API key from the dashboard
+
+2. **Configure Environment Variables**:
+   Create a `.env.local` file in your project root:
+
+   ```bash
+   RESEND_API_KEY=your_resend_api_key_here
+   ```
+
+3. **Test Email Functionality**:
+   - Visit `/email-test` in your browser
+   - Click "Test Budget Alerts" button
+   - Check your terminal logs for detailed output
+   - Check your email inbox (and spam folder)
+
+### Budget Alert System
+
+The app automatically sends email alerts when:
+
+- Students exceed 80% of their monthly budget
+- Only one alert per month to avoid spam
+- Uses student-friendly messaging and ₹ currency
+
+### Manual Testing Endpoints
+
+- **Email Test Page**: `http://localhost:3000/email-test`
+- **API Endpoint**: `POST /api/test-budget-alerts`
+
+### Troubleshooting Email Issues
+
+1. **Check Environment Variables**: Ensure `RESEND_API_KEY` is set
+2. **Verify Domain**: Using `onboarding@resend.dev` (Resend's test domain)
+3. **Check Logs**: Look for "📧 Sending email" messages in terminal
+4. **Spam Folder**: Budget alerts might land in spam initially
+5. **Inngest Dashboard**: Monitor background jobs at `http://localhost:8288`
 
 ## Deploy on Vercel
 

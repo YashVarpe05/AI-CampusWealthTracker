@@ -10,20 +10,20 @@ import {
 // Stats Data
 export const statsData = [
 	{
-		value: "50K+",
-		label: "Active Users",
+		value: "10K+",
+		label: "Campus Students",
 	},
 	{
-		value: "$2B+",
-		label: "Transactions Tracked",
+		value: "₹50L+",
+		label: "Student Money Tracked",
 	},
 	{
 		value: "99.9%",
 		label: "Uptime",
 	},
 	{
-		value: "4.9/5",
-		label: "User Rating",
+		value: "4.8/5",
+		label: "Student Rating",
 	},
 ];
 
@@ -31,35 +31,39 @@ export const statsData = [
 export const featuresData = [
 	{
 		icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
-		title: "Advanced Analytics",
+		title: "Student Expense Analytics",
 		description:
-			"Get detailed insights into your spending patterns with AI-powered analytics",
+			"Get detailed insights into your campus spending patterns with AI-powered analytics tailored for students",
 	},
 	{
 		icon: <Receipt className="h-8 w-8 text-blue-600" />,
 		title: "Smart Receipt Scanner",
 		description:
-			"Extract data automatically from receipts using advanced AI technology",
+			"Scan mess bills, book receipts, and campus purchases automatically using AI technology",
 	},
 	{
 		icon: <PieChart className="h-8 w-8 text-blue-600" />,
-		title: "Budget Planning",
-		description: "Create and manage budgets with intelligent recommendations",
+		title: "Student Budget Planning",
+		description:
+			"Create monthly budgets for mess fees, study materials, entertainment and pocket money",
 	},
 	{
 		icon: <CreditCard className="h-8 w-8 text-blue-600" />,
-		title: "Multi-Account Support",
-		description: "Manage multiple accounts and credit cards in one place",
+		title: "Multiple Account Support",
+		description:
+			"Manage savings account, student loan account, and family support funds in one place",
 	},
 	{
 		icon: <Globe className="h-8 w-8 text-blue-600" />,
-		title: "Multi-Currency",
-		description: "Support for multiple currencies with real-time conversion",
+		title: "Indian Currency Support",
+		description:
+			"Built specifically for Indian campus students with ₹ (INR) currency support",
 	},
 	{
 		icon: <Zap className="h-8 w-8 text-blue-600" />,
-		title: "Automated Insights",
-		description: "Get automated financial insights and recommendations",
+		title: "Smart Campus Insights",
+		description:
+			"Get automated financial insights and spending recommendations for student life",
 	},
 ];
 
@@ -67,45 +71,45 @@ export const featuresData = [
 export const howItWorksData = [
 	{
 		icon: <CreditCard className="h-8 w-8 text-blue-600" />,
-		title: "1. Create Your Account",
+		title: "1. Create Your Student Account",
 		description:
-			"Get started in minutes with our simple and secure sign-up process",
+			"Get started in minutes with our simple and secure sign-up process designed for students",
 	},
 	{
 		icon: <BarChart3 className="h-8 w-8 text-blue-600" />,
-		title: "2. Track Your Spending",
+		title: "2. Track Your Campus Spending",
 		description:
-			"Automatically categorize and track your transactions in real-time",
+			"Automatically categorize and track your mess fees, study expenses, and entertainment spending in real-time",
 	},
 	{
 		icon: <PieChart className="h-8 w-8 text-blue-600" />,
-		title: "3. Get Insights",
+		title: "3. Get Smart Student Insights",
 		description:
-			"Receive AI-powered insights and recommendations to optimize your finances",
+			"Receive AI-powered insights and recommendations to optimize your student budget and save money on campus",
 	},
 ];
 
 // Testimonials Data
 export const testimonialsData = [
 	{
-		name: "Sarah Johnson",
-		role: "Small Business Owner",
+		name: "Priya Sharma",
+		role: "Engineering Student",
 		image: "https://randomuser.me/api/portraits/women/75.jpg",
 		quote:
-			"Welth has transformed how I manage my business finances. The AI insights have helped me identify cost-saving opportunities I never knew existed.",
+			"Campus Wealth Tracker has completely changed how I manage my student budget. Now I can track my mess fees, study expenses, and still save money for trips home!",
 	},
 	{
-		name: "Michael Chen",
-		role: "Freelancer",
+		name: "Rahul Kumar",
+		role: "MBA Student",
 		image: "https://randomuser.me/api/portraits/men/75.jpg",
 		quote:
-			"The receipt scanning feature saves me hours each month. Now I can focus on my work instead of manual data entry and expense tracking.",
+			"As an MBA student managing internship stipends and study loans, this app helps me track every rupee. The budget alerts saved me from overspending on books this semester!",
 	},
 	{
-		name: "Emily Rodriguez",
-		role: "Financial Advisor",
+		name: "Ananya Patel",
+		role: "Medical Student",
 		image: "https://randomuser.me/api/portraits/women/74.jpg",
 		quote:
-			"I recommend Welth to all my clients. The multi-currency support and detailed analytics make it perfect for international investors.",
+			"Perfect for campus life! I track my hostel fees, medical textbook costs, and pocket money all in one place. The AI insights help me save for my USMLE exam fees.",
 	},
 ];

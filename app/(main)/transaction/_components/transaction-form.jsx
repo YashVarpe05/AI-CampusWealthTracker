@@ -180,7 +180,7 @@ export function AddTransactionForm({
 						<SelectContent>
 							{accounts.map((account) => (
 								<SelectItem key={account.id} value={account.id}>
-									{account.name} (${parseFloat(account.balance).toFixed(2)})
+									{account.name} (₹{parseFloat(account.balance).toFixed(2)})
 								</SelectItem>
 							))}
 							<CreateAccountDrawer>
@@ -238,7 +238,7 @@ export function AddTransactionForm({
 							<CalendarIcon className="ml-auto h-4 w-4 opacity-50" />
 						</Button>
 					</PopoverTrigger>
-					<PopoverContent className="w-auto p-0" align="start">
+					<PopoverContent className="w-auto p-0 bg-white" align="start">
 						<Calendar
 							mode="single"
 							selected={date}
@@ -305,7 +305,7 @@ export function AddTransactionForm({
 			)}
 
 			{/* Actions */}
-			<div className="flex gap-4">
+			<div className="flex gap-4 w-[350px]">
 				<Button
 					type="button"
 					variant="outline"
@@ -314,7 +314,11 @@ export function AddTransactionForm({
 				>
 					Cancel
 				</Button>
-				<Button type="submit" className="w-full" disabled={transactionLoading}>
+				<Button
+					type="submit"
+					className="w-full bg-gray-900 text-white hover:bg-gray-800"
+					disabled={transactionLoading}
+				>
 					{transactionLoading ? (
 						<>
 							<Loader2 className="mr-2 h-4 w-4 animate-spin" />

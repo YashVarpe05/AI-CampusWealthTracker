@@ -1,39 +1,39 @@
 export const defaultCategories = [
 	// Income Categories
 	{
-		id: "salary",
-		name: "Salary",
+		id: "pocket-money",
+		name: "Pocket Money",
 		type: "INCOME",
 		color: "#22c55e", // green-500
 		icon: "Wallet",
 	},
 	{
-		id: "freelance",
-		name: "Freelance",
+		id: "scholarship",
+		name: "Scholarship",
 		type: "INCOME",
 		color: "#06b6d4", // cyan-500
-		icon: "Laptop",
+		icon: "Award",
 	},
 	{
-		id: "investments",
-		name: "Investments",
+		id: "family-support",
+		name: "Family Support",
 		type: "INCOME",
 		color: "#6366f1", // indigo-500
-		icon: "TrendingUp",
+		icon: "Heart",
 	},
 	{
-		id: "business",
-		name: "Business",
+		id: "part-time-job",
+		name: "Part-time Job",
 		type: "INCOME",
 		color: "#ec4899", // pink-500
-		icon: "Building",
+		icon: "Briefcase",
 	},
 	{
-		id: "rental",
-		name: "Rental",
+		id: "internship-stipend",
+		name: "Internship Stipend",
 		type: "INCOME",
 		color: "#f59e0b", // amber-500
-		icon: "Home",
+		icon: "Laptop",
 	},
 	{
 		id: "other-income",
@@ -45,35 +45,41 @@ export const defaultCategories = [
 
 	// Expense Categories
 	{
-		id: "housing",
-		name: "Housing",
+		id: "mess-food",
+		name: "Mess & Food",
 		type: "EXPENSE",
 		color: "#ef4444", // red-500
-		icon: "Home",
-		subcategories: ["Rent", "Mortgage", "Property Tax", "Maintenance"],
+		icon: "UtensilsCrossed",
+		subcategories: ["Mess Fees", "Canteen", "Food Delivery", "Groceries"],
 	},
 	{
-		id: "transportation",
-		name: "Transportation",
+		id: "study-materials",
+		name: "Study Materials",
 		type: "EXPENSE",
 		color: "#f97316", // orange-500
-		icon: "Car",
-		subcategories: ["Fuel", "Public Transport", "Maintenance", "Parking"],
+		icon: "BookOpen",
+		subcategories: [
+			"Textbooks",
+			"Stationery",
+			"Lab Equipment",
+			"Online Courses",
+		],
 	},
 	{
-		id: "groceries",
-		name: "Groceries",
+		id: "hostel-fees",
+		name: "Hostel & Accommodation",
 		type: "EXPENSE",
 		color: "#84cc16", // lime-500
-		icon: "Shopping",
+		icon: "Building2",
+		subcategories: ["Hostel Fees", "Room Rent", "Electricity", "Maintenance"],
 	},
 	{
-		id: "utilities",
-		name: "Utilities",
+		id: "transport",
+		name: "Transport",
 		type: "EXPENSE",
 		color: "#06b6d4", // cyan-500
-		icon: "Zap",
-		subcategories: ["Electricity", "Water", "Gas", "Internet", "Phone"],
+		icon: "Bus",
+		subcategories: ["Bus Fare", "Train Tickets", "Auto/Taxi", "Home Visits"],
 	},
 	{
 		id: "entertainment",
@@ -81,14 +87,20 @@ export const defaultCategories = [
 		type: "EXPENSE",
 		color: "#8b5cf6", // violet-500
 		icon: "Film",
-		subcategories: ["Movies", "Games", "Streaming Services"],
+		subcategories: [
+			"Movies",
+			"Gaming",
+			"College Events",
+			"Outings with Friends",
+		],
 	},
 	{
-		id: "food",
-		name: "Food",
+		id: "personal-care",
+		name: "Personal Care",
 		type: "EXPENSE",
 		color: "#f43f5e", // rose-500
-		icon: "UtensilsCrossed",
+		icon: "Heart",
+		subcategories: ["Haircut", "Cosmetics", "Medical", "Gym"],
 	},
 	{
 		id: "shopping",
@@ -96,7 +108,7 @@ export const defaultCategories = [
 		type: "EXPENSE",
 		color: "#ec4899", // pink-500
 		icon: "ShoppingBag",
-		subcategories: ["Clothing", "Electronics", "Home Goods"],
+		subcategories: ["Clothing", "Electronics", "Accessories", "Gifts"],
 	},
 	{
 		id: "healthcare",
@@ -162,6 +174,13 @@ export const defaultCategories = [
 ];
 
 export const categoryColors = defaultCategories.reduce((acc, category) => {
+	// Map both ID and name to color for flexibility
 	acc[category.id] = category.color;
+	acc[category.name] = category.color;
 	return acc;
 }, {});
+
+// Fallback color for categories not in the mapping
+export const getCategoryColor = (categoryKey) => {
+	return categoryColors[categoryKey] || "#94a3b8"; // slate-400 as fallback
+};
