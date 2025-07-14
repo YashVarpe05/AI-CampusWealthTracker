@@ -1,5 +1,10 @@
 "use client";
-import { updateDefaultAccount } from "@/actions/accounts";
+
+import { ArrowUpRight, ArrowDownRight, CreditCard } from "lucide-react";
+import { Switch } from "@/components/ui/switch";
+import { Badge } from "@/components/ui/badge";
+import { useEffect } from "react";
+import useFetch from "@/hooks/use-fetch";
 import {
 	Card,
 	CardContent,
@@ -7,14 +12,11 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Switch } from "@/components/ui/switch";
-import useFetch from "@/hooks/use-fetch";
-import { ArrowDownRight, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import { updateDefaultAccount } from "@/actions/accounts";
 import { toast } from "sonner";
 
-const AccountCard = ({ account }) => {
+export function AccountCard({ account }) {
 	const { name, type, balance, id, isDefault } = account;
 
 	const {
@@ -25,12 +27,13 @@ const AccountCard = ({ account }) => {
 	} = useFetch(updateDefaultAccount);
 
 	const handleDefaultChange = async (event) => {
-		event.preventDefault();
+		event.preventDefault(); // Prevent navigation
 
 		if (isDefault) {
-			toast.warning("you need atleast 1 default account");
-			return;
+			toast.warning("You need atleast 1 default account");
+			return; // Don't allow toggling off the default account
 		}
+
 		await updateDefaultFn(id);
 	};
 
@@ -38,7 +41,8 @@ const AccountCard = ({ account }) => {
 		if (updatedAccount?.success) {
 			toast.success("Default account updated successfully");
 		}
-	}, [updatedAccount, updateDefaultLoading]);
+	}, [updatedAccount]);
+
 	useEffect(() => {
 		if (error) {
 			toast.error(error.message || "Failed to update default account");
@@ -62,7 +66,7 @@ const AccountCard = ({ account }) => {
 					<div className="text-2xl font-bold">
 						${parseFloat(balance).toFixed(2)}
 					</div>
-					<p className="text-xs text-muted-foreground ">
+					<p className="text-xs text-muted-foreground">
 						{type.charAt(0) + type.slice(1).toLowerCase()} Account
 					</p>
 				</CardContent>
@@ -79,6 +83,4 @@ const AccountCard = ({ account }) => {
 			</Link>
 		</Card>
 	);
-};
-
-export default AccountCard;
+}

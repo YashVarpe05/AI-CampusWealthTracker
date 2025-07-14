@@ -1,36 +1,35 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import useFetch from "@/hooks/use-fetch";
+import { toast } from "sonner";
+
+import { Button } from "@/components/ui/button";
 import {
 	Drawer,
-	DrawerClose,
 	DrawerContent,
-	DrawerDescription,
-	DrawerFooter,
 	DrawerHeader,
 	DrawerTitle,
 	DrawerTrigger,
-} from "./ui/drawer";
-import { Button } from "./ui/button";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { accountSchema } from "@/app/lib/schema";
-import { Input } from "./ui/input";
+	DrawerClose,
+} from "@/components/ui/drawer";
+import { Input } from "@/components/ui/input";
 import {
 	Select,
 	SelectContent,
 	SelectItem,
 	SelectTrigger,
 	SelectValue,
-} from "./ui/select";
-import { Switch } from "./ui/switch";
-import useFetch from "@/hooks/use-fetch";
+} from "@/components/ui/select";
+import { Switch } from "@/components/ui/switch";
 import { createAccount } from "@/actions/dashboard";
-import { Loader2 } from "lucide-react";
-import { toast } from "sonner";
-const CreateAccountDrawer = ({ children }) => {
-	const [open, setOpen] = useState(false);
+import { accountSchema } from "@/app/lib/schema";
 
+export function CreateAccountDrawer({ children }) {
+	const [open, setOpen] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -43,50 +42,50 @@ const CreateAccountDrawer = ({ children }) => {
 		defaultValues: {
 			name: "",
 			type: "CURRENT",
-			balance: 0,
+			balance: "",
 			isDefault: false,
 		},
 	});
+
 	const {
-		data: newAccount,
-		error,
-		fn: createAccountFn,
 		loading: createAccountLoading,
+		fn: createAccountFn,
+		error,
+		data: newAccount,
 	} = useFetch(createAccount);
 
+	const onSubmit = async (data) => {
+		await createAccountFn(data);
+	};
+
 	useEffect(() => {
-		if (newAccount && !createAccountLoading) {
+		if (newAccount) {
 			toast.success("Account created successfully");
 			reset();
 			setOpen(false);
 		}
-	}, [createAccountLoading, newAccount]);
+	}, [newAccount, reset]);
+
 	useEffect(() => {
 		if (error) {
 			toast.error(error.message || "Failed to create account");
 		}
-		return () => {};
 	}, [error]);
-	const onSubmit = async (data) => {
-		console.log(data);
-		// Convert balance to number
-		const formData = {
-			...data,
-			balance: parseFloat(data.balance) || 0,
-		};
-		await createAccountFn(formData);
-	};
+
 	return (
 		<Drawer open={open} onOpenChange={setOpen}>
 			<DrawerTrigger asChild>{children}</DrawerTrigger>
-			<DrawerContent className="bg-white">
-				<DrawerHeader className="bg-white">
+			<DrawerContent>
+				<DrawerHeader>
 					<DrawerTitle>Create New Account</DrawerTitle>
 				</DrawerHeader>
-				<div className="px-4 pb-4 bg-white">
+				<div className="px-4 pb-4">
 					<form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 						<div className="space-y-2">
-							<label htmlFor="name" className="text-sm font-medium">
+							<label
+								htmlFor="name"
+								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							>
 								Account Name
 							</label>
 							<Input
@@ -98,53 +97,57 @@ const CreateAccountDrawer = ({ children }) => {
 								<p className="text-sm text-red-500">{errors.name.message}</p>
 							)}
 						</div>
+
 						<div className="space-y-2">
-							<label htmlFor="type" className="text-sm font-medium">
+							<label
+								htmlFor="type"
+								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							>
 								Account Type
 							</label>
 							<Select
-								onValueChange={(value) => {
-									setValue("type", value);
-								}}
-								defaultValues={watch("type")}
+								onValueChange={(value) => setValue("type", value)}
+								defaultValue={watch("type")}
 							>
 								<SelectTrigger id="type">
-									<SelectValue placeholder="Select Type" />
+									<SelectValue placeholder="Select type" />
 								</SelectTrigger>
 								<SelectContent>
 									<SelectItem value="CURRENT">Current</SelectItem>
-									<SelectItem value="SAVINGS">Saving</SelectItem>
+									<SelectItem value="SAVINGS">Savings</SelectItem>
 								</SelectContent>
 							</Select>
-
 							{errors.type && (
 								<p className="text-sm text-red-500">{errors.type.message}</p>
 							)}
 						</div>
+
 						<div className="space-y-2">
-							<label htmlFor="balance" className="text-sm font-medium">
-								Initial Balance{" "}
+							<label
+								htmlFor="balance"
+								className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+							>
+								Initial Balance
 							</label>
 							<Input
 								id="balance"
 								type="number"
 								step="0.01"
 								placeholder="0.00"
-								{...register("balance", {
-									valueAsNumber: true,
-								})}
+								{...register("balance")}
 							/>
 							{errors.balance && (
 								<p className="text-sm text-red-500">{errors.balance.message}</p>
 							)}
 						</div>
+
 						<div className="flex items-center justify-between rounded-lg border p-3">
 							<div className="space-y-0.5">
 								<label
 									htmlFor="isDefault"
-									className="text-sm font-medium cursor-pointer"
+									className="text-base font-medium cursor-pointer"
 								>
-									Set as Default{" "}
+									Set as Default
 								</label>
 								<p className="text-sm text-muted-foreground">
 									This account will be selected by default for transactions
@@ -152,22 +155,20 @@ const CreateAccountDrawer = ({ children }) => {
 							</div>
 							<Switch
 								id="isDefault"
-								onCheckedChange={(checked) => setValue("isDefault", checked)}
 								checked={watch("isDefault")}
+								onCheckedChange={(checked) => setValue("isDefault", checked)}
 							/>
 						</div>
+
 						<div className="flex gap-4 pt-4">
 							<DrawerClose asChild>
-								<Button
-									type="button"
-									className="flex-1 hover:bg-black/30 hover:text-white"
-								>
+								<Button type="button" variant="outline" className="flex-1">
 									Cancel
 								</Button>
 							</DrawerClose>
 							<Button
 								type="submit"
-								className="flex-1 bg-black text-white hover:text-black hover:bg-black/25"
+								className="flex-1"
 								disabled={createAccountLoading}
 							>
 								{createAccountLoading ? (
@@ -185,6 +186,4 @@ const CreateAccountDrawer = ({ children }) => {
 			</DrawerContent>
 		</Drawer>
 	);
-};
-
-export default CreateAccountDrawer;
+}
