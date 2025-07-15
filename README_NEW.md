@@ -21,6 +21,7 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 ## ✨ Key Features
 
 ### 💰 **Financial Management**
+
 - **Multi-Account Support**: Manage multiple accounts (Savings, Current, Digital Wallets)
 - **Indian Currency (₹)**: All amounts displayed in Indian Rupees
 - **Transaction Categories**: Student-focused categories like Mess Fees, Study Materials, Hostel Expenses
@@ -28,6 +29,7 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 - **Budget Tracking**: Set monthly budgets with 80% threshold alerts
 
 ### 🎯 **Student-Focused Categories**
+
 - 🍽️ **Mess & Food**: Mess fees, canteen expenses, food delivery
 - 📚 **Study Materials**: Textbooks, stationery, lab equipment, online courses
 - 🏠 **Hostel & Accommodation**: Hostel fees, room rent, electricity, maintenance
@@ -40,24 +42,28 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 - ✈️ **Travel**: Home visits, trips, vacation expenses
 
 ### 🤖 **AI-Powered Features**
+
 - **Smart Insights**: Personalized financial advice using Google Gemini AI
 - **Campus-Specific Recommendations**: Tailored suggestions for student life
 - **Spending Pattern Analysis**: Understand your financial habits
 - **Receipt Scanning**: Automatically extract data from bills and receipts
 
 ### 📊 **Analytics & Reporting**
+
 - **Interactive Charts**: Visual spending analysis with Recharts
 - **Monthly Reports**: Automated financial summaries via email
 - **Category Breakdown**: Detailed expense analysis by category
 - **Account Balance Tracking**: Real-time account balance monitoring
 
 ### 📧 **Email & Notifications**
+
 - **Budget Alerts**: Email notifications when spending exceeds 80% of budget
 - **Monthly Reports**: Comprehensive financial summaries delivered monthly
 - **Student-Friendly Messaging**: Campus-specific email templates
 - **Resend Integration**: Reliable email delivery system
 
 ### 🔄 **Automation**
+
 - **Background Jobs**: Powered by Inngest for reliable processing
 - **Recurring Transactions**: Automated transaction creation
 - **Budget Monitoring**: Continuous expense tracking
@@ -66,6 +72,7 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 ## 🛠️ Technology Stack
 
 ### **Frontend**
+
 - **Framework**: Next.js 14 with App Router
 - **Language**: JavaScript/TypeScript
 - **Styling**: Tailwind CSS + Shadcn/ui components
@@ -75,6 +82,7 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 - **Notifications**: Sonner for toast notifications
 
 ### **Backend**
+
 - **API**: Next.js API Routes
 - **Database**: PostgreSQL with Prisma ORM
 - **Hosting**: Supabase for database hosting
@@ -83,11 +91,13 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 - **Email Service**: Resend for transactional emails
 
 ### **AI & Analytics**
+
 - **AI Engine**: Google Gemini AI for financial insights
 - **Receipt Processing**: AI-powered receipt scanning
 - **Analytics**: Custom analytics with Recharts visualization
 
 ### **Security & Performance**
+
 - **Security**: Arcjet for bot detection and rate limiting
 - **Performance**: Next.js 14 optimizations with Turbopack
 - **Type Safety**: TypeScript for robust development
@@ -96,6 +106,7 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 ## 🚀 Getting Started
 
 ### **Prerequisites**
+
 - Node.js 18.0 or higher
 - npm, yarn, or pnpm
 - PostgreSQL database (Supabase recommended)
@@ -103,12 +114,14 @@ Campus Wealth Tracker is a comprehensive financial management solution tailored 
 ### **Installation**
 
 1. **Clone the repository**
+
 ```bash
 git clone https://github.com/YashVarpe05/AI-CampusWealthTracker.git
 cd AI-CampusWealthTracker
 ```
 
 2. **Install dependencies**
+
 ```bash
 npm install
 # or
@@ -118,7 +131,8 @@ pnpm install
 ```
 
 3. **Set up environment variables**
-Create a `.env.local` file in the root directory:
+   Create a `.env.local` file in the root directory:
+
 ```bash
 # Database
 DATABASE_URL="your_postgresql_connection_string"
@@ -142,22 +156,26 @@ INNGEST_SIGNING_KEY="your_inngest_signing_key"
 ```
 
 4. **Set up the database**
+
 ```bash
 npx prisma generate
 npx prisma db push
 ```
 
 5. **Seed the database** (Optional)
+
 ```bash
 npm run seed
 ```
 
 6. **Start the development server**
+
 ```bash
 npm run dev
 ```
 
 7. **Start Inngest dev server** (For background jobs)
+
 ```bash
 npx inngest-cli@latest dev
 ```
@@ -167,6 +185,7 @@ Visit `http://localhost:3000` to see the application.
 ## 📱 Usage Guide
 
 ### **Getting Started**
+
 1. **Sign Up/Login**: Create an account using Clerk authentication
 2. **Create Accounts**: Set up your bank accounts, digital wallets
 3. **Set Budget**: Define monthly budget limits
@@ -176,6 +195,7 @@ Visit `http://localhost:3000` to see the application.
 ### **Key Workflows**
 
 #### **Adding a Transaction**
+
 1. Navigate to "Create Transaction"
 2. Select transaction type (Income/Expense)
 3. Enter amount in ₹ (Indian Rupees)
@@ -184,12 +204,14 @@ Visit `http://localhost:3000` to see the application.
 6. Use receipt scanner for automatic data extraction
 
 #### **Managing Budgets**
+
 1. Go to Dashboard
 2. View current budget progress
 3. Receive email alerts at 80% threshold
 4. Adjust budget limits as needed
 
 #### **Analyzing Spending**
+
 1. View interactive charts on Dashboard
 2. Check monthly reports in email
 3. Analyze category-wise spending
@@ -198,16 +220,19 @@ Visit `http://localhost:3000` to see the application.
 ## 🔧 Configuration
 
 ### **Email Configuration**
+
 1. **Get Resend API Key**: Sign up at [resend.com](https://resend.com)
 2. **Add to Environment**: Update `RESEND_API_KEY` in `.env.local`
 3. **Test Email**: Visit `/email-test` to verify setup
 
 ### **AI Configuration**
+
 1. **Google Gemini Setup**: Get API key from [Google AI Studio](https://makersuite.google.com/)
 2. **Add to Environment**: Update `GOOGLE_GEMINI_API_KEY` in `.env.local`
 3. **Customize Prompts**: Edit AI prompts in `lib/inngest/functions.js`
 
 ### **Background Jobs**
+
 1. **Inngest Setup**: Configure Inngest for background job processing
 2. **Job Monitoring**: Visit Inngest dashboard at `http://localhost:8288`
 3. **Schedule Configuration**: Modify cron schedules in `lib/inngest/functions.js`
@@ -215,11 +240,13 @@ Visit `http://localhost:3000` to see the application.
 ## 🧪 Testing
 
 ### **Email Testing**
+
 - Visit `/email-test` for browser-based testing
 - Use `/api/test-budget-alerts` for manual triggers
 - Check terminal logs for detailed output
 
 ### **Development Testing**
+
 ```bash
 # Run tests
 npm test
@@ -234,12 +261,14 @@ npm run type-check
 ## 📦 Deployment
 
 ### **Vercel Deployment** (Recommended)
+
 1. Push code to GitHub
 2. Connect repository to Vercel
 3. Add environment variables in Vercel dashboard
 4. Deploy automatically
 
 ### **Other Platforms**
+
 - **Netlify**: Use `npm run build` and deploy `dist` folder
 - **Railway**: Connect GitHub repository
 - **Supabase**: Use built-in Next.js hosting
@@ -255,6 +284,7 @@ npm run type-check
 ## 📊 Architecture
 
 ### **Project Structure**
+
 ```
 ├── app/                    # Next.js app directory
 │   ├── (auth)/            # Authentication pages
@@ -271,6 +301,7 @@ npm run type-check
 ```
 
 ### **Database Schema**
+
 - **Users**: User profiles and authentication
 - **Accounts**: Bank accounts and digital wallets
 - **Transactions**: Income and expense records
